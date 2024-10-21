@@ -1,0 +1,55 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+
+Table university {
+  id integer [primary key]
+  username varchar
+  collages  varchar[]
+  numberofsession int
+  startReg timestamp
+  admins int[]
+}
+
+
+Table admins {
+  id integer [primary key]
+  username varchar
+  password varchar
+  foruniversity int
+  }
+
+
+
+Table coordination {
+  id integer [primary key]
+  username varchar
+  password varchar
+  foruniversity int
+  forcoalage varchar
+  }
+
+
+Table student {
+  id integer [primary key]
+  username varchar
+  password varchar
+  foruniversity int
+  forcoalage varchar
+  levelofyear int 
+  }
+
+Table ceo{
+   id integer [primary key]
+   password varchar
+}
+
+
+
+
+Ref: "university"."id" < "admins"."foruniversity"
+
+Ref: "university"."id" < "coordination"."foruniversity"
+
+Ref: "university"."id" < "student"."foruniversity"
