@@ -1,6 +1,7 @@
 import mongoose,{connect}  from 'mongoose';
 import {UniversityModel} from '../schema/university.schema';
-import {UniversityToReg} from '../../interfase/allInterface'
+
+import {UniversityToReg} from '../../interfase/allInterface';
 
 
 

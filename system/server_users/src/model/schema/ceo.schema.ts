@@ -1,16 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose,{model} from 'mongoose';
 
-interface ceo {
+interface Ceo {
  _id:mongoose.Types.ObjectId,
+ name:string,
  password:string,
  
 } 
 
 // Create a schema
-const ceoSchema = new mongoose.Schema<ceo>({
-    _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+const ceoSchema = new mongoose.Schema<Ceo>({
+    name:{type:String,required:true},
     password: { type: String, required: true },
     
 });
 
-export {ceoSchema}
+const CeoModel=model<Ceo>('ceo',ceoSchema);
+
+export {CeoModel}

@@ -1,4 +1,8 @@
 import mongoose from 'mongoose';
+import {Request} from 'express'
+
+
+
 
 interface UniversityToReg {
  
@@ -18,20 +22,19 @@ interface AdminsToReg {
    interface CoordinationToReg{
     username:string,
     password:string,
-    forUniversity:mongoose.Types.ObjectId,
+    forUniversity:string,
     forCollega:string
    } 
 
 
 
-interface Students {
-    _id:mongoose.Types.ObjectId
+interface StudentsToReg {
     username:string,
     password:string,
-    forUniversity:mongoose.Types.ObjectId,
+    forUniversity:string,
     forCollega:string,
     levelofyear: number
    } 
 
 
-export {UniversityToReg,AdminsToReg,CoordinationToReg,Students}
+export {UniversityToReg,AdminsToReg,CoordinationToReg,StudentsToReg}

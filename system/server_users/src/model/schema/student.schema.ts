@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose,{model} from 'mongoose';
 
 interface Students {
  _id:mongoose.Types.ObjectId
@@ -11,12 +11,13 @@ interface Students {
 
 // Create a schema
 const StudentsSchema = new mongoose.Schema<Students>({
-    _id: { type: mongoose.Schema.Types.ObjectId, required: true },
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    username: { type: String, required: true, },
+    password: { type: String, required: true, },
     forUniversity: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true },
     forCollega:{type: String,require:true},
     levelofyear:{type:Number}
 });
 
-export {StudentsSchema}
+const StudentModel=model<Students>('students',StudentsSchema);
+
+export {StudentModel}

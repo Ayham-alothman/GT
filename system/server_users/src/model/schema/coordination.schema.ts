@@ -10,8 +10,7 @@ interface coordination {
 
 // Create a schema
 const coordinationSchema = new mongoose.Schema<coordination>({
-    _id: { type: mongoose.Schema.Types.ObjectId, required: true },
-    username: { type: String, required: true, unique: true },
+    username: { type: String, required: true, },
     password: { type: String, required: true },
     forUniversity: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true },
     forCollega:{type: String,require:true}
