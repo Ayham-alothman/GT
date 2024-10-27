@@ -11,7 +11,7 @@ async function SignupForcoordination (data:CoordinationToReg) {
         await connect('mongodb://localhost:27017/GT_User');
         const University=await UniversityModel.findById(data.forUniversity);
         if(!University){throw `this universty do't found`}
-        if(University?.colleges.includes(data.forCollega)){console.log('set')
+        if(University?.colleges.includes(data.forCollega)){
             const newCoor={
                 username:data.username,
                 password:bcrypt.hashSync(data.password,10),
@@ -21,6 +21,7 @@ async function SignupForcoordination (data:CoordinationToReg) {
             }
             const newCoord= new CoordinationModel(newCoor);
             await newCoord.save();
+            return newCoord._id;
         }
         
         else if(!University?.colleges.includes(data.forCollega)){
@@ -28,7 +29,7 @@ async function SignupForcoordination (data:CoordinationToReg) {
         }
         
     }
-    catch(e){console.log(e)}
+    catch(e){throw e}
     finally{await mongoose.connection.close()}
 }
  

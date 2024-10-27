@@ -3,9 +3,9 @@ import {deocodeToken} from '../../utility/decodeToken'
 
 async function valditionStudent(req:Request,res:Response,next:NextFunction){
   try{
-     const token:string=req.cookies('token');
+     const token:string=req.cookies.token;
      const data=await deocodeToken(token);
-     if(data?.Student==true){
+     if(data?.IsStudent==true){
       req.decodeToken=data;
       next();}
      else{throw `not have permission`}

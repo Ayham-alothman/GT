@@ -10,7 +10,7 @@ async function LoginCeoControllar(req: Request, res: Response) {
     }
     await valditionLenghtId(req.body.id);
     await LoginForCeo(req.body.id, req.body.password);
-    const dataForToken = { id: req.body.id, Ceo: true };
+    const dataForToken = { id: req.body.id, IsCeo: true };
     const token = generateToken(dataForToken);
     res.status(200).cookie("token", token).end();
   } catch (e: any) {

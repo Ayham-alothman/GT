@@ -14,8 +14,8 @@ const StudentsSchema = new mongoose.Schema<Students>({
     username: { type: String, required: true, },
     password: { type: String, required: true, },
     forUniversity: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true },
-    forCollega:{type: String,require:true},
-    levelofyear:{type:Number}
+    forCollega:{type: String,required:true},
+    levelofyear:{type:Number, required:true}
 });
 
 const StudentModel=model<Students>('students',StudentsSchema);

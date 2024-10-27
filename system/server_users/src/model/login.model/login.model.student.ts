@@ -8,12 +8,13 @@ async function LoginForStudent(id:string,password:string){
     try{
         await connect('mongodb://localhost:27017/GT_User');
         const Student=await StudentModel.findById(id);
-        if(!Student){throw `this user not found`};
+        if(!Student){throw {state:400,message:`this user not found`}};
         const StudentValdtion=bcrypt.compareSync(password,Student.password);
-        if(!StudentValdtion){throw `the password incorect`}
+        if(!StudentValdtion){throw {state:400,message:`the password incorect`}}
+        delete(Student as {password?:string}).password;
         return Student;
     }
-    catch(e){console.log(e)}
+    catch(e){throw e}
     finally{await mongoose.connection.close()}
 }
 

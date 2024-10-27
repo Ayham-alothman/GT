@@ -22,6 +22,7 @@ async function SignupForStudent (data:StudentsToReg) {
             }
             const Student=new StudentModel(DataToReg);
             await Student.save();
+            return Student._id;
         }
 
     }

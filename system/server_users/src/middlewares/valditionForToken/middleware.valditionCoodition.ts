@@ -1,11 +1,11 @@
 import {Request,Response,NextFunction} from 'express';
 import {deocodeToken} from '../../utility/decodeToken'
 
-async function valditionAdmin(req:Request,res:Response,next:NextFunction){
+async function valditionCoordition(req:Request,res:Response,next:NextFunction){
   try{
-     const token:string=req.cookies('token');
+     const token:string=req.cookies.token;
      const data=await deocodeToken(token);
-     if(data?.Admin==true){
+     if(data?.IsCoordition==true){
       req.decodeToken=data;
       next();}
      else{throw `not have permission`}
@@ -20,4 +20,4 @@ async function valditionAdmin(req:Request,res:Response,next:NextFunction){
   }
 }
 
-export {valditionAdmin}
+export {valditionCoordition}
