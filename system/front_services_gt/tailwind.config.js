@@ -11,7 +11,8 @@ module.exports = {
 
       },
       backgroundImage:{
-        'backgroundLogin':"url('./assets/images/backgroundLogin.png')"
+        'backgroundLogin':"url('./assets/images/backgroundLogin.png')",
+        'backgroundReg':"url('./assets/images/bg-Reg.png')"
       },
       spacing:{
         '1800':'1800px'
