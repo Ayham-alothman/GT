@@ -8,12 +8,14 @@ async function LoginAdminControllar(req:Request,res:Response){
     try{
         if (!req.body.id || !req.body.password) {
             throw { state: 400, message: "there miss data" };
-          }console.log('set')
+          }
           await valditionLenghtId(req.body.id);
           const Admin=await LoginForAdmin(req.body.id,req.body.password);
-          const newAdmin={IsAdmin:true,...Admin};
+          const newAdmin={IsAdmin:true,id:Admin._id,username:Admin.username,forUniversity:Admin.forUniversity};
           const token =generateToken(newAdmin);
-          res.status(200).cookie("token", token).end();
+          res.status(200).cookie("token", token,{
+           maxAge:3600000
+        }).end();
         } catch (e: any) {
           if (e.state && e.message) {
             res.status(e.state).json(e.message);

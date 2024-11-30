@@ -19,6 +19,6 @@ async function SignupToCeo(name:string,password:string){
     catch(e){console.log(e)}
     finally{await mongoose.connection.close()}
 } 
-SignupToCeo('ayham','12345');
+SignupToCeo('ayham','12345678');
 
 export {SignupToCeo}

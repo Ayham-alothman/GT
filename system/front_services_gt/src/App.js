@@ -1,6 +1,7 @@
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
 
 import ProtectionRouting from './utility/ProtectionRouting';
+import ProtectHomeRoute from './utility/ProtctRoute/ProtectHomeRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -19,7 +20,11 @@ function App() {
      
      </Route>
 
+     <Route element={<ProtectHomeRoute/>} >
      <Route path='/' element={<Home/>}  > </Route>
+     </Route>
+
+     
      <Route path='/login'element={<Login/>}  > </Route>
      <Route path='/signup'element={<Signup/>}  > </Route>
      <Route path='/addcourse'element={<AddCourse/>}  > </Route>

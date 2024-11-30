@@ -21,7 +21,7 @@ function StartupAdmin(){
     return(
     <>
      <div className=" h-screen flex flex-col">
-        <Navbar/>
+        <Navbar name="startup"/>
         <div className="flex-1  flex flex-col relative ">
             <div className=" flex-1 "></div>
             <div className="flex justify-center items-end flex-1 bg-backgroundReg bg-cover">
