@@ -1,9 +1,17 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import {AddDepartment,DeleteDepartment} from '../state/slices/StartupAdminData'
+
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 let AllDep;
 
 function TableAddDerpartment() {
+
+  const Department=useSelector(s=>s.startupAdmin.Department);
+  const dispatch = useDispatch()
+
+  
   let [Depart, setDepart] = useState([]);
   let [ShowInput,setShowInput]=useState(0);
   let [NameD,setNameD]=useState('')
@@ -15,15 +23,13 @@ function TableAddDerpartment() {
 
    function InsertDpartment(){
     if(NameD.length==0){alert(`do't insert name empty`);return}
-     setDepart([...Depart,NameD]);
+     dispatch(AddDepartment(NameD));
      setShowInput(0);
-     setNameD('');
-     AllDep=[...Depart,NameD];
+     
    }
    function removeDepartment(ind){
-    Depart.splice(ind,1);
-    setDepart([...Depart]);
-    AllDep=[...Depart];
+    dispatch(DeleteDepartment(ind));
+   
    }
 
 
@@ -43,7 +49,7 @@ function TableAddDerpartment() {
             <div className=" text-p4 mr-5">Action</div>
           </div>
           <div className="flex-1 overflow-y-scroll ">
-            {Depart.map((e, i) => {
+            {Department.map((e, i) => {
               return (
                 <>
                   <div className="h-12 flex justify-around items-center my-1  ">
@@ -83,4 +89,3 @@ function TableAddDerpartment() {
 }
 
 export default TableAddDerpartment;
-export {AllDep} ;

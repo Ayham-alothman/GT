@@ -9,8 +9,8 @@ import StartupAdmin from './pages/StartupAdmin';
 import AddCourse from './pages/AddCourse';
 
 
-
 function App() {
+ 
   return (
    <>
    <BrowserRouter>

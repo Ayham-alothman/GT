@@ -9,9 +9,12 @@ import Erorr from '../utility/Notfication/Erorr';
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 import sucsess from '../utility/Notfication/Sucsess';
+import {useDispatch} from 'react-redux';
+import {setUser} from '../state/slices/UserSliceState';
 
 function Login(){
   const navigate = useNavigate();
+  const usedispatch=useDispatch();
 
 
   let [Id,setId]=useState('');
@@ -34,12 +37,12 @@ function Login(){
           const token=Cookies.get(`token`);
           const data=jwtDecode(token)
           if(Respones.status==200&&data){
-            Cookies.set(`user`,JSON.stringify(data));
+            usedispatch(setUser(data));
             navigate(`/`);
             sucsess(`login sucsess`)
           }
         }
-        catch(e){console.log(e);
+        catch(e){
           if(e.status&&e.response){Erorr(e.response.data)}
           else if(e.message){Erorr(e.message)}
           else{Erorr(e)}
