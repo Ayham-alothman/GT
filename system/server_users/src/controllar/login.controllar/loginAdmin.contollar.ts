@@ -11,7 +11,7 @@ async function LoginAdminControllar(req:Request,res:Response){
           }
           await valditionLenghtId(req.body.id);
           const Admin=await LoginForAdmin(req.body.id,req.body.password);
-          const newAdmin={IsAdmin:true,id:Admin._id,username:Admin.username,forUniversity:Admin.forUniversity};
+          const newAdmin={IsAdmin:true,id:Admin._id,username:Admin.username,forUniversity:Admin.forUniversity,PreInfo:Admin.preinfo};
           const token =generateToken(newAdmin);
           res.status(200).cookie("token", token,{
            maxAge:3600000

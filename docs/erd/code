@@ -17,39 +17,86 @@ Table admins {
   id integer [primary key]
   username varchar
   password varchar
+  permission bool
+  department int[]
   foruniversity int
   }
 
 
-
-Table coordination {
+Table department {
   id integer [primary key]
-  username varchar
-  password varchar
+  usernameA varchar
+  usernameE varchar
   foruniversity int
-  forcoalage varchar
   }
 
 
-Table student {
+Table teacher {
   id integer [primary key]
-  username varchar
-  password varchar
+  usernameA varchar
+  usernameE varchar
   foruniversity int
-  forcoalage varchar
-  levelofyear int 
   }
 
-Table ceo{
-   id integer [primary key]
-   password varchar
+
+
+Table classroom {
+  id integer [primary key]
+  code varchar
+  type varchar
+  capacity int
+  foruniversity int
+  }
+
+Table course {
+    id integer [primary key]
+    forDepatment int
+    teachers int[]
+    nameA varchar
+    nameE varchar
+    code varchar 
+    levelYear int
+    semster int
+    type varchar
+    basic varchar
+    description  varchar
+
+}
+
+Table semster {
+  id integer [primary key]
+  nameS varchar
+  departments int[]
+  courses int[]
+  teaches int[]
+  classroom int[]
+  conditions json
+  spaces json
+  conflict json
+
+}
+
+Table table {
+    id integer [primary key]
+    file file
+}
+
+Table timeTechers {
+  teacher int
+  Date date
 }
 
 
-
-
 Ref: "university"."id" < "admins"."foruniversity"
+Ref: "university"."id" < "department"."foruniversity"
+Ref: "admins"."department" < "department"."id" 
+Ref: "university"."id" < "teacher"."id" 
+Ref: "university"."id" < "classroom"."foruniversity"
+Ref: "department"."id" < "course"."forDepatment"
+Ref: "semster"."courses" < "course"."id"
+Ref: "semster"."classroom" < "classroom"."id"
+Ref: "semster"."departments" < "department"."id"
 
-Ref: "university"."id" < "coordination"."foruniversity"
+Ref: "table"."file" < "semster"."id"
+Ref: "timeTechers"."teacher" <> "teacher"."id"
 
-Ref: "university"."id" < "student"."foruniversity"

@@ -21,10 +21,10 @@ function App() {
      </Route>
 
      <Route element={<ProtectHomeRoute/>} >
-     <Route path='/' element={<Home/>}  > </Route>
+     
      </Route>
 
-     
+     <Route path='/' element={<Home/>}  > </Route>
      <Route path='/login'element={<Login/>}  > </Route>
      <Route path='/signup'element={<Signup/>}  > </Route>
      <Route path='/addcourse'element={<AddCourse/>}  > </Route>

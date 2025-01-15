@@ -7,7 +7,7 @@ import {Request} from 'express'
 interface UniversityToReg {
  
  username:string,
- colleges:string[],
+ colleges?:string[],
  admins?:[mongoose.Types.ObjectId]
 }
 

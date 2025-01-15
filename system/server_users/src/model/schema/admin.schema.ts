@@ -4,6 +4,7 @@ interface admins {
  _id:mongoose.Types.ObjectId
  username:string,
  password:string,
+ preinfo:boolean
  forUniversity:mongoose.Types.ObjectId
 } 
 
@@ -11,6 +12,7 @@ interface admins {
 const adminSchema = new mongoose.Schema<admins>({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    preinfo:{type:Boolean,required:false,default:false},
     forUniversity: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true }
 });
 

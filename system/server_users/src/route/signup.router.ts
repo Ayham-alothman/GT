@@ -14,6 +14,9 @@ import { valditionCoordition } from "../middlewares/valditionForToken/middleware
 import { valditionStudentData } from "../middlewares/valditionForDataSignup/middleware.valditionDataStudent";
 import { signupStudentControllar } from "../controllar/signup.controllar/signupStudent.controllar";
 //###
+import { valditionUnivercityData } from "../middlewares/valditionForDataSignup/middleware.valditionDataUnivercity";
+import { signupUniversityControllar } from "../controllar/signup.controllar/signupUnivercity.controllar";
+//###
 const routerUrl = Router();
 
 routerUrl.post(
@@ -21,7 +24,7 @@ routerUrl.post(
   valditionCeo,
   valditionAdminData,
   ControllarAdminSignup
-); 
+);
 routerUrl.post(
   "/coordition",
   valditionAdmin,
@@ -33,6 +36,12 @@ routerUrl.post(
   valditionCoordition,
   valditionStudentData,
   signupStudentControllar
+);
+routerUrl.post(
+  "/university",
+  valditionCeo,
+  valditionUnivercityData,
+  signupUniversityControllar
 );
 
 export default routerUrl;
