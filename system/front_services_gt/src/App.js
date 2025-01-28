@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import StartupAdmin from './pages/StartupAdmin';
 import AddCourse from './pages/AddCourse';
+import Semster from './pages/Semster';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
      <Route path='/login'element={<Login/>}  > </Route>
      <Route path='/signup'element={<Signup/>}  > </Route>
      <Route path='/addcourse'element={<AddCourse/>}  > </Route>
+
+     <Route path='/semster' element={<Semster/>}  > </Route>
   
      <Route path='/startup'element={<StartupAdmin/>}  > </Route>
      
