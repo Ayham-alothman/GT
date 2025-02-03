@@ -1,45 +1,19 @@
-
-function HandelFinalData(Data){
-    const Data = JSON.parse(JSON.stringify(Data));
+function HandelFinalDataTeachers(Data) {
+    let Data1 = JSON.parse(JSON.stringify(Data)); // Deep copy of Data
     
-    let Keys=Object.keys(Data);
-  
-    for(let k of Keys){
-      
-      for(let k1 of Data[k]){
-       
-          let Keys1=Object.keys(k1);
-        for(let ele of Keys1){
-          
-            for(let Nele of k1[ele] ){console.log(k,k1,ele,Nele)
-                if(Nele[1]==1){Nele=Nele[1]}
-                
+    let Keys = Object.keys(Data1);
+
+    for (let k of Keys) {
+        for (let k1 of Data1[k]) {
+            let Keys1 = Object.keys(k1);
+            for (let ele of Keys1) {
+                // Filter the array based on the second element
+                k1[ele] = k1[ele].filter(Nele => Nele[1] === 1).map(Nele => Nele[0]);
             }
-            
         }
-      }
     }
-  
-   }
-  
-   let teachers ={
-    1: [
-        {
-            1: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0]],
-            2: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0], [5, 1], [6, 0]],
-        },
-        {
-            1: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0]],
-            3: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0], [5, 1], [6, 0]],
-        },
-    ],
-    2: [
-        {
-            1: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0]],
-            3: [[0, 0], [1, 1], [2, 0], [3, 1], [4, 0], [5, 1], [6, 0]],
-        },
-    ]
+    return Data1;
 }
 
-  
-      HandelFinalData(teachers)
+
+export default HandelFinalDataTeachers;

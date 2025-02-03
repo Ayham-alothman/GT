@@ -1,19 +1,26 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSubjectConflicts } from "../../state/slices/SemsterSlice";
+import { setViewteachers } from "../../state/slices/LayoutSmsterSlice";
 
 function ConflictCourseC(){
-    let [Courses,setCourses]=useState(['course1','course2','course3','course5']);
+    let dispatch=useDispatch();
+
+
+    const course=useSelector((s)=>s.semster.subjects);
+    let [Courses,setCourses]=useState(useSelector((s)=>s.semster.subjects));
     let [SelectCourse,setSelectCourse]=useState([]);
-    let [Per,setPer]=useState('0%');
+    let [Per,setPer]=useState(0);
     let [Group,setGroup]=useState({});
     
 
 
     function AddGroup(){
-        let NumberGroup=Object.keys(Group).length;
+        let NumberGroup=Object.keys(Group).length+1;
         Group[NumberGroup]={per:Per,course:SelectCourse};
         setGroup({...Group});
         setSelectCourse([]);
-        setPer('0%');
+        setPer(0);
     }
 
     function handelPer(element){
@@ -32,9 +39,14 @@ function ConflictCourseC(){
         }
     }
 
+    function SetAllConflectCourse(){
+        dispatch(setSubjectConflicts(Group));
+        dispatch(setViewteachers(true));
+    }
+
     
     return(
-       <div className="h-screen ">
+       <div className="h-screen flex flex-col ">
         
         <div className=" w-full h-full py-16  px-36 flex ">
             <div className="h-full flex-1   flex flex-col ">
@@ -42,7 +54,7 @@ function ConflictCourseC(){
                 <p className="text-white text-lg ">Select Courses</p>
               </div>
               <div className="flex-1  bg-p2 rounded-2xl overflow-y-scroll">
-                {Courses.map((e)=>{
+                {Object.keys(Courses).map((e)=>{
                     return(
                         <div className=" h-10 mb-1 flex justify-center items-center space-x-6">
                             <div>
@@ -62,17 +74,17 @@ function ConflictCourseC(){
                     <button onClick={()=>{AddGroup()}} className="bg-p3 text-white w-24 h-12 rounded-full">Add Group</button>
                     <p className="text-white ml-8">select percentage</p>
                     <select value={Per} onChange={(e)=>{handelPer(e.target.value)}}>
-                        <option value={"0%"}>0%</option>
-                        <option value={"10%"}>10%</option>
-                        <option value={"20%"}>20%</option>
-                        <option value={"30%"}>30%</option>
-                        <option value={"40%"}>40%</option>
-                        <option value={"50%"}>50%</option>
-                        <option value={"60%"}>60%</option>
-                        <option value={"70%"}>70%</option>
-                        <option value={"80%"}>80%</option>
-                        <option value={"90%"}>90%</option>
-                        <option value={"100%"}>100%</option>
+                        <option value={0}>0%</option>
+                        <option value={10}>10%</option>
+                        <option value={20}>20%</option>
+                        <option value={30}>30%</option>
+                        <option value={40}>40%</option>
+                        <option value={50}>50%</option>
+                        <option value={60}>60%</option>
+                        <option value={70}>70%</option>
+                        <option value={80}>80%</option>
+                        <option value={90}>90%</option>
+                        <option value={100}>100%</option>
 
                     </select>
                 </div>
@@ -82,7 +94,7 @@ function ConflictCourseC(){
                             <div className="h-auto w-full flex flex-col text-p4 text-xl font-light">
                                 <div className="flex justify-around items-center border-b-2 border-p4">
                                     <p>Group{key}</p>
-                                    <p>percentage:{Group[key].per}</p>
+                                    <p>percentage:{Group[key].per}%</p>
                                 </div>
                                 <div className="flex flex-col border-b-2 border-p4">
                                     {Group[key].course.map((cou)=>{
@@ -95,6 +107,14 @@ function ConflictCourseC(){
                     })}
                 </div>
             </div>
+        </div>
+
+        <div className="h-auto px-20 flex justify-end pb-5">
+            <button 
+            onClick={()=>{SetAllConflectCourse()}}
+            className=" w-48 bg-p4 flex text-lg justify-center items-center text-white font-bold h-12 rounded-2xl">
+                Set Conflect Course
+            </button>
         </div>
 
        </div>

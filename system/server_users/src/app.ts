@@ -36,8 +36,8 @@ app.use('/signup',Signup);
 app.use('/login',Signin);
 
 app.all('*',(req:Request,res:Response)=>{
-    console.log(req.body);
-    console.log("cc",req.cookies)
+    //console.log(JSON.stringify(req.body, null, 2));
+    //console.log("cc",req.cookies)
     res.status(403).json(`Not ok`)
 })
 

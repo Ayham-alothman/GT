@@ -4,6 +4,7 @@ import ClassC from "../component/semster/ClassC";
 import EditClassC from "../component/semster/EditClassC";
 import ConflictCourseC from "../component/semster/ConflictCourseC";
 import TimeTeaches from "../component/semster/TimeTeaches";
+import FinalRegistration from "../component/semster/FinalRegistration";
 import { useSelector } from "react-redux";
 
 
@@ -17,6 +18,7 @@ function Semster(){
     const edittmeclass=useSelector((s)=>s.layoutsemster.edittmeclass);
     const conflictcourse=useSelector((s)=>s.layoutsemster.conflictcourse);
     const teachers=useSelector((s)=>s.layoutsemster.teachers);
+    const final=useSelector((s)=>s.layoutsemster.finalRe);
     
 
 
@@ -28,6 +30,7 @@ function Semster(){
             {classs?<ClassC/>:false}
             {conflictcourse?<ConflictCourseC/>:false}
             {teachers?<TimeTeaches/>:false}
+            {final?<FinalRegistration/>:false}
 
         </div>
     )

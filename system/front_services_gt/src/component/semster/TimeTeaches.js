@@ -6,13 +6,24 @@ import DictionaryDays from "../../utility/DictionaryDays";
 import HandelDataTeachrs from "../../utility/HandelTeachersData";
 import Zeros from "../../utility/ZerosForShow";
 import FormateOntherime from "../../utility/FormateOntherTime";
+import HandelFinalDataTeachers from "../../utility/HandelFinalDataTeachers";
+
+import { setTeachers } from "../../state/slices/SemsterSlice";
+import { setViewFinal } from "../../state/slices/LayoutSmsterSlice";
+
+import {  useDispatch, useSelector } from "react-redux";
 
 
 function TimeTeaches(){
-    let times={ 1: [0, 1, 2, 3, 4], 2: [0, 1, 2, 3, 4, 6], 3: [0, 1, 2, 3, 4, 5, 6], }
-    let Teachers=["teach1","teach2","teach3","teach4","teach5","teach6"];
-    const TimeTeachers=HandelDataTeachrs(Teachers.length,times);
-    const ArrForShowOntherTime=Zeros(Teachers.length);
+
+    let dispatch=useDispatch()
+
+    //let times={ 1: [0, 1, 2, 3, 4], 2: [0, 1, 2, 3, 4, 6], 3: [0, 1, 2, 3, 4, 5, 6], }
+    let times=useSelector((s)=>s.semster.times);
+    //let Teachers=["teach1","teach2","teach3","teach4","teach5","teach6"];
+    let [Teachers,setTeacherss]=useState(useSelector((s)=>s.semster.nameTeachers))
+    const TimeTeachers=HandelDataTeachrs(Teachers,times);
+    const ArrForShowOntherTime=Zeros(Object.keys(Teachers).length);
     const ontherTime=FormateOntherime(times);
 
     let [OnterT,setOnterT]=useState(ontherTime);
@@ -31,7 +42,10 @@ function TimeTeaches(){
     function ChangePeriod(teacher,first,day,period){
         
          const newOb = JSON.parse(JSON.stringify(teachers));
-         newOb[teacher][first][day][period][1] = !newOb[teacher][first][day][period][1];
+         let val=newOb[teacher][first][day][period][1];
+         if(val==1){newOb[teacher][first][day][period][1]=0}
+         else if(val==0){newOb[teacher][first][day][period][1]=1}
+          
          setteachers(newOb);
     }
 
@@ -57,6 +71,14 @@ function TimeTeaches(){
     setteachers(newOb);
     setOnterT(ontherTime);
     setShowOntherTime(ArrForShowOntherTime);
+   }
+
+   function SetTimeAllTeachers(){
+     console.log(teachers)
+     let TimeTeachers= HandelFinalDataTeachers(teachers);
+     console.log(TimeTeachers)
+     dispatch(setTeachers(TimeTeachers));
+     dispatch(setViewFinal(true));
    }
 
 
@@ -123,6 +145,11 @@ function TimeTeaches(){
                         </div>
                     )
                 })}
+            </div>
+
+            <div className="flex justify-end px-24 my-3">
+                <button onClick={()=>{SetTimeAllTeachers()}} className="rounded-e-2xl bg-p4 text-white text-lg w-48 py-2 px-4">Set Time Teachres </button>
+
             </div>
 
 

@@ -37,13 +37,13 @@ function DeparmentC(){
     function AddNewDay() {
         const keys = Object.keys(Days);
         if(keys.length==0){
-            setDays({"1":[1,1,1,1,1,1]})
+            setDays({1:[1,1,1,1,1,1]})
         }
         else{
             const lastIndex = Number(keys[keys.length - 1]);
         
         if (lastIndex < 7) {
-            const newDay = String(lastIndex + 1);
+            const newDay = Number(lastIndex + 1);
             
             
             // Create a new object to update the state
@@ -85,6 +85,7 @@ function DeparmentC(){
 
 
     function ValditionAllData(){
+    
         if(Depart.length==0){;msgErorr(`please select department`)}
         else{
             const AllDays=Object.keys(Days);

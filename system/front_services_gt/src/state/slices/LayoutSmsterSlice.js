@@ -3,12 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const LayoutSlice=createSlice({
     name:"layoutsemster",
     initialState:{
-        department:false,
+        department:true,
         course:false,
         classs:false,
         edittmeclass:false,
         conflictcourse:false,
-        teachers:true,
+        teachers:false,
+        finalRe:false
     },
     reducers:{
         setViewdepartment:(state,action)=>{state.department=action.payload},
@@ -17,8 +18,9 @@ const LayoutSlice=createSlice({
         setViewedittmeclass:(state,action)=>{state.edittmeclass=action.payload},
         setViewconflictcourse:(state,action)=>{state.conflictcourse=action.payload},
         setViewteachers:(state,action)=>{state.teachers=action.payload},
+        setViewFinal:(state,action)=>{state.finalRe=action.payload},
     }
 })
 
-export const {setViewclass,setViewconflictcourse,setViewcourse,setViewdepartments,setViewdepartment,setViewedittmeclass,setViewteachers}=LayoutSlice.actions;
+export const {setViewclass,setViewFinal,setViewconflictcourse,setViewcourse,setViewdepartments,setViewdepartment,setViewedittmeclass,setViewteachers}=LayoutSlice.actions;
 export default LayoutSlice.reducer;

@@ -1,6 +1,6 @@
 
 
-function HandelDataTeachrs(num,time){
+function HandelDataTeachrs(tea,time){
     
     let TimeTeachers={}
 
@@ -10,12 +10,13 @@ function HandelDataTeachrs(num,time){
     for(let key of Keys){
         newTime[key]=[];
         for(let val of time[key]){
-            newTime[key].push([val,true]);
+            newTime[key].push([val,1]);
         }
     }
-
-    for(let i=0 ;i<num;i++){
-        TimeTeachers[i]=[newTime]
+ 
+    let KT=Object.keys(tea);
+    for(let i=0 ;i<KT.length;i++){
+        TimeTeachers[KT[i]]=[newTime]
     }
     return TimeTeachers
 
