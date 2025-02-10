@@ -1,4 +1,6 @@
 import logo from '../../assets/images/logo_navbar.png';
+import { Link } from 'react-router-dom';
+
 import { FaUser } from "react-icons/fa6";
 
 function Navbar(prop){
@@ -7,7 +9,7 @@ function Navbar(prop){
     <div className='  flex flex-row justify-between items-center h-24 mx-4 border-b border-p4'>
         <div className='flex basis-1/4 justify-between ml-2  border-r border-p4 '>
             <img src={logo} className=' h-20 '></img>
-            <h1 className=' mx-2 mt-6 text-p4 text-2xl'>{prop.name}</h1>
+            <h1 className=' mx-2 mt-6 text-p4 text-2xl'><Link to={`/`}>Home</Link></h1>
         </div>
 
         <div className='flex basis-3/4 justify-end items-center mr-2 h-10 '>
