@@ -11,7 +11,7 @@ async function SignupForStudent (data:StudentsToReg) {
         await connect('mongodb://localhost:27017/GT_User');
         const University=await UniversityModel.findById(data.forUniversity);
         if(!University){throw `the university do't fiund`}
-        else if(!University.colleges.includes(data.forCollega)){throw `this college do't found`}
+       // else if(!University.colleges.includes(data.forCollega)){throw `this college do't found`}
         else {
             const DataToReg={
                 username:data.username,

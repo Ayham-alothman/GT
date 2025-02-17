@@ -20,7 +20,7 @@
 
       function AddClassRoom(){
           if(CountClassroom.length!=0&&TypeClassroom.length!=0&&Capacity.length!=0){
-              usedispatch(AddClassroom({count:CountClassroom,type:TypeClassroom,capacity:Capacity}))
+              usedispatch(AddClassroom({count:Number(CountClassroom),type:TypeClassroom,capacity:Number(Capacity)}))
               setClassroom([...Classroom,{count:CountClassroom,type:TypeClassroom,capacity:Capacity}]);
               setCountClassroom('');
               setTypeClassroom('');

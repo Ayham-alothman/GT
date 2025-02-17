@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import log from '../../assets/images/logo 1.png'
 import { useState } from 'react';
 
+
 function Navbar2(){
+    
     let [BoxServises,setBoxServises]=useState(0);
     let [BoxStore,setBoxStore]=useState(0);
     return(
@@ -17,11 +19,12 @@ function Navbar2(){
                     <div className=' hover:font-bold '  onMouseEnter={()=>{setBoxServises(1)}} onMouseLeave={()=>{setBoxServises(0)}} >
                         <Link >Services</Link>
                         <div className={BoxServises?` absolute w-auto h-auto bg-gray-300 flex flex-col text-sm font-light pt-2 px-1 space-y-3  `:`hidden`} >
-                            <Link className='hover:font-semibold'>Generate Table</Link>
-                            <Link className='hover:font-semibold'>Add/remove Coordition</Link>
-                            <Link className='hover:font-semibold'>Add/remove Teacher</Link>
-                            <Link className='hover:font-semibold'>Add/remove Course</Link>
-                            <Link className='hover:font-semibold '>Add/remove Department</Link>
+                            <Link to="/semster" className='hover:font-semibold'>Generate Table</Link>
+                            <Link to="/cord" className='hover:font-semibold'>Add/remove Coordition</Link>
+                            <Link to="/teacher" className='hover:font-semibold'>Add/remove Teacher</Link>
+                            <Link to="/addcourse" className='hover:font-semibold'>Add/remove Course</Link>
+                            <Link to="/department" className='hover:font-semibold '>Add Department</Link>
+                            <Link to="/class" className='hover:font-semibold '>Add Classroom</Link>
                             
                         </div>
                     </div>
@@ -30,9 +33,11 @@ function Navbar2(){
                         <Link >Store</Link>
                         <div className={BoxStore?` absolute w-auto h-auto bg-gray-300 flex flex-col text-sm font-light pt-2 px-1 space-y-3  `:`hidden`} >
                             <Link className='hover:font-semibold'>Semsters</Link>
-                            <Link className='hover:font-semibold'>Coordition</Link>
-                            <Link className='hover:font-semibold'>Teacher</Link>
-                            <Link className='hover:font-semibold'>Course</Link>
+                            <Link to="/viewcord" className='hover:font-semibold'>Coordition</Link>
+                            <Link to="/viewteacher" className='hover:font-semibold'>Teacher</Link>
+                            <Link to="/viewcourse" className='hover:font-semibold'>Course</Link>
+                            <Link to="/viewdepart" className='hover:font-semibold'>Department</Link>
+                            <Link className='hover:font-semibold'>Classroom</Link>
                         </div>
                     </div>
 

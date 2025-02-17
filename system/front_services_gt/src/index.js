@@ -9,10 +9,10 @@ import {store} from './state/InitState'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <>
     <ToastContainer />
     <Provider store={store}>
     <App />
     </Provider>
-  </React.StrictMode>
+    </>
 );

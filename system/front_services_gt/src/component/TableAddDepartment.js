@@ -24,6 +24,7 @@ function TableAddDerpartment() {
    function InsertDpartment(){
     if(NameD.length==0){alert(`do't insert name empty`);return}
      dispatch(AddDepartment(NameD));
+     setNameD('')
      setShowInput(0);
      
    }
@@ -71,7 +72,7 @@ function TableAddDerpartment() {
         <div className={ShowInput?" absolute top-0 left-10 w-[800px] h-80 bg-p2 flex flex-col":"hidden"}>
             <div className=" h-10 flex mx-5 mt-4 justify-end items-center"><IoMdCloseCircleOutline onClick={()=>{showIn(0)}} className=" text-p4 text-3xl"/></div>
             <div className="h-12 ml-12 mb-2 "><h1 className=" text-2xl font-bold text-p4">Add Department</h1></div>
-            <div className=" ml-12 h-24"><input onChange={(e)=>{setNameD(e.target.value)}} value={NameD} className=" h-10 rounded-full" type="text" placeholder="enert name collega"></input></div>
+            <div className=" ml-12 h-24"><input onChange={(e)=>{setNameD(e.target.value)}} value={NameD} className=" border-p4 pl-3 border-2 text-p4 font-light h-10 rounded-full" type="text" placeholder="enert name collega"></input></div>
             <div className=" flex-1 mb-8 mx-10 flex justify-end items-end"><button onClick={()=>{InsertDpartment()}} className="w-16 h-8 text-white bg-p4 rounded-full">insert</button></div>
         </div>
 

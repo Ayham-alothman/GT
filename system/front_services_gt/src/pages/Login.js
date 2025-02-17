@@ -19,21 +19,16 @@ function Login(){
 
   let [Id,setId]=useState('');
   let [Password,setPassword]=useState('');
-  let [Actor,SetActor]=useState('');
   
-
-  function handelActor(val){
-    SetActor(val);
-    
-  }
+  
 
 
 
   async function loginValdition(){ 
-      if(Id.length<8||Password.length<8||Actor.length==0){}
+      if(Id.length<8||Password.length<8){}
       else{
         try{
-          const Respones= await Api.post(`/login/${Actor}`,{id:Id,password:Password},{ withCredentials: true });
+          const Respones= await Api.post(`/login/admin`,{id:Id,password:Password});
           const token=Cookies.get(`token`);
           const data=jwtDecode(token)
           if(Respones.status==200&&data){
@@ -56,27 +51,10 @@ function Login(){
         <div className=' h-2/3 w-1/2 bg-white mx-auto my-auto rounded-full flex'>
             <div className='  w-2/3 mx-auto h-4/5 mt-7 flex flex-col items-center space-y-5 pt-5'>
                 <div className=' w-1/5 bg-black rounded-full'><img src={logo} className=' w-full'></img></div>
-                <input type='text' placeholder='  enter fully id' className=' border-2 border-black h-10 w-64 rounded-2xl'     value={Id} onChange={(e)=>{e.preventDefault();setId(e.target.value)}}></input>
-                <input type='password' placeholder='  enter password' className=' border-2 border-black h-10 w-64 rounded-2xl' value={Password} onChange={(e)=>{e.preventDefault();setPassword(e.target.value)}}></input>
+                <input type='text' placeholder='  enter fully id' className=' border-2 border-p4 pl-1 h-10 w-64 rounded-2xl text-p4'     value={Id} onChange={(e)=>{e.preventDefault();setId(e.target.value)}}></input>
+                <input type='password' placeholder='  enter password' className=' border-2 border-p4 pl-1 text-p4 h-10 w-64 rounded-2xl' value={Password} onChange={(e)=>{e.preventDefault();setPassword(e.target.value)}}></input>
                 <button className=' h-10 w-64 rounded-2xl bg-p4 text-white ' onClick={(e)=>{e.preventDefault();loginValdition();}}>Login</button>
-                <div className=' flex space-x-5'>
                 
-                 <label>
-                  <input type="radio" name="options" value={`admin`} onChange={(e)=>{handelActor(e.target.value)}}   ></input>
-                       admin
-                 </label>
-
-                 <label>
-                  <input type="radio" name="options" value={`coordition`} onChange={(e)=>{handelActor(e.target.value)}} ></input>
-                       coordition
-                 </label>
-
-                 <label>
-                  <input type="radio" name="options" value={`student`} onChange={(e)=>{handelActor(e.target.value)}}  ></input>
-                       student
-                 </label>
-        
-                </div>
             </div>
            
         </div>

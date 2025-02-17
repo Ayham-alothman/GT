@@ -17,6 +17,7 @@ import { signupStudentControllar } from "../controllar/signup.controllar/signupS
 import { valditionUnivercityData } from "../middlewares/valditionForDataSignup/middleware.valditionDataUnivercity";
 import { signupUniversityControllar } from "../controllar/signup.controllar/signupUnivercity.controllar";
 //###
+import { SignupSubAdminControllar } from "../controllar/signup.controllar/signupSubAdmin.controllar";
 const routerUrl = Router();
 
 routerUrl.post(
@@ -25,6 +26,9 @@ routerUrl.post(
   valditionAdminData,
   ControllarAdminSignup
 );
+
+routerUrl.post(`/subadmin`,SignupSubAdminControllar);
+
 routerUrl.post(
   "/coordition",
   valditionAdmin,

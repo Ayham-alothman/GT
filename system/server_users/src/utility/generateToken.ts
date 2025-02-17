@@ -1,7 +1,10 @@
 import {sign} from 'jsonwebtoken';
 
 function generateToken(date:any){ 
- return sign(date,'GTthree');
+             
+ const newAdmin={_id:date._id,username:date.username,forUniversity:date.forUniversity,preinfo:date.preinfo,permision:date.permision,depart:date.depart};
+
+ return sign(newAdmin,'GTthree');
 }
 
 

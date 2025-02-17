@@ -1,26 +1,13 @@
-import mongoose,{model} from 'mongoose';
+import mongoose,{model,Types} from 'mongoose';
 
 interface admins {
  username:string,
  password:string,
-<<<<<<< HEAD
- preinfo:boolean
- forUniversity:mongoose.Types.ObjectId
-} 
-
-// Create a schema
-const adminSchema = new mongoose.Schema<admins>({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    preinfo:{type:Boolean,required:false,default:false},
-    forUniversity: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true }
-});
-
-=======
- forUniversity:mongoose.Types.ObjectId,
+ forUniversity:Types.ObjectId,
  permision:number,
  depart:[],
  preinfo:boolean,
+ 
 } 
 
 const adminSchema = new mongoose.Schema({
@@ -43,7 +30,7 @@ const adminSchema = new mongoose.Schema({
       required: true
     },
     depart: {
-      type: [{name:String,write:Boolean}],
+      type: [{_id:String,username:String,write:Boolean}],
       default: []
     },
     preinfo: {
@@ -51,7 +38,6 @@ const adminSchema = new mongoose.Schema({
       default: false
     }
   });
->>>>>>> dashboard
  const AdminsModel=model<admins>('admins',adminSchema)
 
 export {AdminsModel}
