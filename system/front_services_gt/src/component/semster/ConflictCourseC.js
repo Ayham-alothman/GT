@@ -7,7 +7,7 @@ function ConflictCourseC(){
     let dispatch=useDispatch();
 
 
-    const course=useSelector((s)=>s.semster.subjects);
+    
     let [Courses,setCourses]=useState(useSelector((s)=>s.semster.subjects));
     let [SelectCourse,setSelectCourse]=useState([]);
     let [Per,setPer]=useState(0);

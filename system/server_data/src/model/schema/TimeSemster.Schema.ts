@@ -1,30 +1,15 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { Schema, model,  Types } from 'mongoose';
 
 interface TimeSlots {
-  [key: number]: number[];
-}
-
-interface TimeSemester extends Document {
-  id: number;
   semester_id: Types.ObjectId;
-  time: TimeSlots;
+  time: any;
 }
 
-const TimeSlotsSchema = new Schema<TimeSlots>({
-  1: { type: [Number], required: false },
-  2: { type: [Number], required: false },
-  3: { type: [Number], required: false },
-  4: { type: [Number], required: false },
-  5: { type: [Number], required: false },
-  6: { type: [Number], required: false },
-  7: { type: [Number], required: false }
-}, { _id: false });
-
-const TimeSemesterSchema = new Schema<TimeSemester>({
+const TimeSemesterSchema = new Schema<TimeSlots>({
   semester_id: { type: Schema.Types.ObjectId, ref: 'Semesters', required: true },
-  time: { type: TimeSlotsSchema, required: true }
+  time: { type:{}, required: true }
 });
 
-const TimeSemesterModel = model<TimeSemester>('TimeSemesters', TimeSemesterSchema);
+const TimeSemesterModel = model<TimeSlots>('TimeSemesters', TimeSemesterSchema);
 
-export default TimeSemesterModel;
+export  {TimeSemesterModel};

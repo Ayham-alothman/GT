@@ -1,14 +1,14 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model,Types } from 'mongoose';
 
 interface Semester  {
-  name: string;
+  idUni: Types.ObjectId;
   date: Date;
 }
-
 const SemesterSchema = new Schema<Semester>({
-  name: { type: String, required: true },
-  date: { type: Date, required: true }
+  idUni: { type: Schema.Types.ObjectId, required: true },
+  date: { type: Date, default: Date.now }
 });
+
 
 const SemesterModel = model<Semester>('Semesters', SemesterSchema);
 

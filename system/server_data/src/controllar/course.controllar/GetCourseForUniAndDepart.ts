@@ -4,13 +4,14 @@ import { GetCourseforUniAndDepart } from "../../model/course.model/GetCourseForD
 
 async function GetCourseforUniAndDepartControllar(req:Request,res:Response) {
     try{
-        const {Depart,idUni}=req.body;
+        const {Depart,idUni}=req.body;console.log(Depart)
           let AllCourse: any[] = [];
 
           for (let D of Depart) {
-              const DataCourse = await GetCourseforUniAndDepart(idUni, D._id);
+              const DataCourse = await GetCourseforUniAndDepart(idUni, D._id||D);
               AllCourse = [...AllCourse, ...DataCourse];
           }
+          
           res.status(200).json(AllCourse);
     }
     catch(e:any){ console.log(e)

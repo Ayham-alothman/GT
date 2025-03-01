@@ -13,4 +13,5 @@ async function GetCourseforUniAndDepart(idUni:string,idDepart:string){
 
 }
 
+
 export {GetCourseforUniAndDepart}

@@ -3,7 +3,7 @@ import { FaMinus } from "react-icons/fa";
 
 import msgErorr from '../../utility/Notfication/Erorr'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DictionaryDays from "../../utility/DictionaryDays";
 import ChangeFormateTime from "../../utility/ChangeFormateTime";
 
@@ -11,13 +11,33 @@ import { setDepartment,setTimes } from "../../state/slices/SemsterSlice";
 import { setViewcourse } from "../../state/slices/LayoutSmsterSlice";
 import {  useDispatch } from "react-redux";
 
+import APIServerData from "../../utility/InitApierverData";
+
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+
 
 function DeparmentC(){
     const dispatach=useDispatch();
+    
 
-    const AllDepart=["it","civi","arch","decor"]
+    const { forUniversity } = jwtDecode(Cookies.get(`token`));
+
+    const [AllDepart,setAllDepart]= useState([]);
     let [Depart,setDepart]=useState([]);
     let [Days,setDays]=useState({ });
+
+
+    useEffect(()=>{
+      const GetAllDepart=async ()=>{
+        try{
+            const AllDepartApi=await APIServerData.post(`/depart/getdeparts`,{idUni:forUniversity});
+            setAllDepart(AllDepartApi.data);
+        }
+        catch(e){console.log(e)}
+      }
+      GetAllDepart();
+    },[])
 
 
    function HandelDepart(e){
@@ -147,11 +167,11 @@ function DeparmentC(){
                <input
                  className=" h-6 w-6 bg-p4 mr-2"
                  type="checkbox"
-                 value={option}
-                 checked={Depart.includes(option)}
+                 value={option._id}
+                 checked={Depart.includes(option._id)}
                  onChange={HandelDepart}
                />
-               {option}
+               {option.username}
              </label>
            </div>
          ))}

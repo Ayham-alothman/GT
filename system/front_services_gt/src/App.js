@@ -19,6 +19,9 @@ import ViewTeacher from './pages/ViewTeacher';
 import ViewCord from './pages/ViewCord';
 import ViewDepart from './pages/ViewDepart';
 
+import Download from './pages/Download';
+import ShowTable from './pages/ShowTable';
+
 
 function App() {
  
@@ -58,6 +61,9 @@ function App() {
      <Route path='/startup'element={<StartupAdmin/>}  > </Route>
 
      <Route path='/login'element={<Login/>}  > </Route>
+
+     <Route path='/download'element={<Download/>}  > </Route>
+     <Route path='/showtable'element={<ShowTable/>}  > </Route>
      
      
      

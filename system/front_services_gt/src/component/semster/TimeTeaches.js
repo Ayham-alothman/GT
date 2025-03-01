@@ -18,9 +18,9 @@ function TimeTeaches(){
 
     let dispatch=useDispatch()
 
-    //let times={ 1: [0, 1, 2, 3, 4], 2: [0, 1, 2, 3, 4, 6], 3: [0, 1, 2, 3, 4, 5, 6], }
+    
     let times=useSelector((s)=>s.semster.times);
-    //let Teachers=["teach1","teach2","teach3","teach4","teach5","teach6"];
+    
     let [Teachers,setTeacherss]=useState(useSelector((s)=>s.semster.nameTeachers))
     const TimeTeachers=HandelDataTeachrs(Teachers,times);
     const ArrForShowOntherTime=Zeros(Object.keys(Teachers).length);

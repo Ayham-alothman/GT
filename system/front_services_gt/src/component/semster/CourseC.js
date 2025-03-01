@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSend } from "react-icons/io5";
 
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
-import { setHalls,setSujects,setnameTeachers } from "../../state/slices/SemsterSlice";
+import { setAllclass,setHalls,setSujects,setnameTeachers,setAllcourse,setAllteachersR } from "../../state/slices/SemsterSlice";
 import { setViewclass } from "../../state/slices/LayoutSmsterSlice";
 
 import Halls from "../../utility/CountTypeClassToSet";
 
-import CompainT from '../../utility/CompainNameTeachers'
+import CompainT from '../../utility/CompainNameTeachers';
+
+import APIServerData from "../../utility/InitApierverData";
+
+
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+
+
 
 
 
@@ -16,10 +24,13 @@ import CompainT from '../../utility/CompainNameTeachers'
 function CourseC(){
    
     let dispatch=useDispatch();
+    const { forUniversity } = jwtDecode(Cookies.get(`token`));
+    let department=useSelector((s)=>s.semster.department);
 
-    let AllCoursee=["sw1","sw2","sw3","sw4","sw5","sw6","sw7","sw8","sw9"];
-    let AllTeachers=["teacher1","teacher2","teacher3","teacher4","teacher5","teacher6"];
-    let AllTypeClass=["A","B","C","D"];
+
+    let [AllCoursee,setAllCoursee]=  useState([]);
+    let [AllTeachers,setAllTeachers]=useState([]);
+    let [AllTypeClass,setAllTypeClass]=useState([]);
     
     let [AllCourse,setAllCourse]=useState(AllCoursee)
     let [CourseSelected,setCourseSelected]=useState({});
@@ -36,6 +47,40 @@ function CourseC(){
     let [MultiCheck,setMultiCheck]=useState(false);
     let [PossbleCheck,setPossbleCheck]=useState(false);
     let [AllDayCheck,setAllDayCheck]=useState(false);
+
+
+    useEffect(()=>{
+      const GetCourseAndTeacherAndClass=async()=>{
+       try{
+        const ReqCourse=await APIServerData.post(`/course/getcoursefordepart`,
+        {idUni:forUniversity,Depart:department});
+        let AllTeachrReq=[];
+        for(let oneDepart of department){
+          let ReqDepart= await APIServerData.post(`teacher/getallteacher/`,
+          {idUni:forUniversity,idDepart:oneDepart});
+          AllTeachrReq=[...AllTeachrReq,...ReqDepart.data];
+        }
+        const ReqClass=await APIServerData.post(`/class/getallclass`,{idUni:forUniversity})
+        console.log(ReqCourse.data,ReqClass.data,AllTeachrReq);
+        let C = ReqCourse.data.map((e) => e.nameE);
+        let T=AllTeachrReq.map((e)=>{return e.username});
+        let Claaa=ReqClass.data.map((e)=>{return e.type});
+        setAllCoursee(C);
+        setAllTeachers(T);
+        setAllTypeClass(Claaa);
+        dispatch(setAllcourse(ReqCourse.data))
+        dispatch(setAllteachersR(AllTeachrReq))
+        dispatch(setAllclass(ReqClass.data))
+       }
+       catch(e){console.log(e)}
+      }
+      GetCourseAndTeacherAndClass()
+    },[])
+
+    useEffect(()=>{setAllCourse(AllCoursee)},[AllCoursee]);
+    useEffect(()=>{setCurCourse(AllCourse[0])},[AllCourse])
+    useEffect(()=>{setTypeClass(AllTypeClass[0])},[AllTypeClass]);
+    useEffect(()=>{setCurTeachers(AllTeachers[0])},[AllTeachers]);
 
     function HandelCureentCourse(value){
       setCurCourse(value)
