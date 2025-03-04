@@ -7,8 +7,8 @@ async function GetSemstersControllar(req:Request,res:Response) {
 
     try{
       const {idUni}=req.body;
-      await GetSemstersModel(idUni);
-      res.status(200).end();
+      const DataSemsters=await GetSemstersModel(idUni);
+      res.status(200).json(DataSemsters);
      
     }
     catch (e: any) {

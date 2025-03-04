@@ -32,7 +32,7 @@ function Navbar2(){
                     <div className=' hover:font-bold' onMouseEnter={()=>{setBoxStore(1)}} onMouseLeave={()=>{setBoxStore(0)}}>
                         <Link >Store</Link>
                         <div className={BoxStore?` absolute w-auto h-auto bg-gray-300 flex flex-col text-sm font-light pt-2 px-1 space-y-3  `:`hidden`} >
-                            <Link className='hover:font-semibold'>Semsters</Link>
+                            <Link to="/semster/view" className='hover:font-semibold'>Semsters</Link>
                             <Link to="/viewcord" className='hover:font-semibold'>Coordition</Link>
                             <Link to="/viewteacher" className='hover:font-semibold'>Teacher</Link>
                             <Link to="/viewcourse" className='hover:font-semibold'>Course</Link>

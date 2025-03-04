@@ -5,7 +5,7 @@ import ServerData from '../utility/InitApierverData';
 const Download = () => {
   const handleDownload = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/download', {
+      const response = await axios.post('http://127.0.0.1:5000/download', {
         responseType: 'blob', // Important for binary data
       });
       console.log(response);

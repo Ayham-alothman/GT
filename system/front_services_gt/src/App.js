@@ -18,6 +18,7 @@ import ViewCourse from './pages/ViewCourse';
 import ViewTeacher from './pages/ViewTeacher';
 import ViewCord from './pages/ViewCord';
 import ViewDepart from './pages/ViewDepart';
+import ViewSemster from './pages/ViewSemster';
 
 import Download from './pages/Download';
 import ShowTable from './pages/ShowTable';
@@ -64,6 +65,8 @@ function App() {
 
      <Route path='/download'element={<Download/>}  > </Route>
      <Route path='/showtable'element={<ShowTable/>}  > </Route>
+     <Route path='/semster/view'element={<ViewSemster/>}  > </Route>
+
      
      
      
