@@ -9,7 +9,7 @@ async function getAllUniversitys(){
 
     }
     catch(e){throw e}
-    finally{await mongoose.connection.close()}
+    //finally{await mongoose.connection.close()}
 } 
 
 

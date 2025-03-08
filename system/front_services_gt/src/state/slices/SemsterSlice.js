@@ -15,6 +15,8 @@ const SmsterSlice=createSlice({
         Allcourse:[],
         Alltachers:[],
         Allclass:[],
+
+        file:{}
     },
     reducers:{
         setDepartment:(state,action)=>{state.department=action.payload},
@@ -29,8 +31,10 @@ const SmsterSlice=createSlice({
         setAllcourse:(state,action)=>{state.Allcourse=action.payload},
         setAllteachersR:(state,action)=>{state.Alltachers=action.payload},
         setAllclass:(state,action)=>{state.Allclass=action.payload},
+
+        setFile:(state,action)=>{state.file=action.payload},
     }
 })  
 
-export const {setAllclass,setAllcourse,setAllteachersR,setDepartment,setHalls,settimeHalls,setnameTeachers,setSubjectConflicts,setSujects,setTeachers,setTimes}=SmsterSlice.actions;
+export const {setFile,setAllclass,setAllcourse,setAllteachersR,setDepartment,setHalls,settimeHalls,setnameTeachers,setSubjectConflicts,setSujects,setTeachers,setTimes}=SmsterSlice.actions;
 export default SmsterSlice.reducer;

@@ -1,6 +1,12 @@
 import React from 'react';
 
-function ShowTable({ blobfile }) {
+import { useSelector } from "react-redux";
+
+
+function ShowTable() {
+
+    let blobfile=useSelector((s)=>s.semster.file);
+
     const handleDownload = () => {
         const url = window.URL.createObjectURL(new Blob([blobfile]));
         const a = document.createElement('a');

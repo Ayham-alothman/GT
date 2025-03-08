@@ -3,6 +3,9 @@ import { LoginForCeo } from "../../model/login.model/login.model.ceo";
 import { generateToken } from "../../utility/generateToken";
 import { valditionLenghtId } from "../../utility/valditionLengthId";
 
+import {sign} from 'jsonwebtoken';
+
+
 async function LoginCeoControllar(req: Request, res: Response) {
   try {
     if (!req.body.id || !req.body.password) {
@@ -11,7 +14,7 @@ async function LoginCeoControllar(req: Request, res: Response) {
     await valditionLenghtId(req.body.id);
     await LoginForCeo(req.body.id, req.body.password);
     const dataForToken = { id: req.body.id, IsCeo: true };
-    const token = generateToken(dataForToken);
+    const token = sign(dataForToken,'GTthree');
     res.status(200).cookie("token", token).end();
   } catch (e: any) {
     if (e.state && e.message) {

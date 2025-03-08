@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { setFile } from "../../state/slices/SemsterSlice";
 import axios from 'axios';
 
 import ApiServerData from '../../utility/InitApierverData'
@@ -7,10 +8,16 @@ import HandelDataCourseSemster from "../../utility/HandelSendDataSemster/CourseS
 
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
+import Sucses from '../../utility/Notfication/Sucsess';
 
 function FinalRegistration(){
 
     const { forUniversity } = jwtDecode(Cookies.get(`token`));
+
+    const Dispatch=useDispatch();
+    const Navigate=useNavigate();
 
     let halls=useSelector((s)=>s.semster.halls);
     let times=useSelector((s)=>s.semster.times);
@@ -71,7 +78,12 @@ function FinalRegistration(){
                 },
             });
 
-            console.log(ReqSaveNewSmsterTable);
+            Dispatch(setFile(FileAlgorithm.data));
+            Sucses(`downloaded file`);
+            Navigate('/showtable');
+            
+
+            
 
              
 

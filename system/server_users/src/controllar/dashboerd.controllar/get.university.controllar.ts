@@ -8,7 +8,7 @@ async function GetUniversityContollar(req:Request,res:Response) {
         res.status(200).json(DataUniversity);
         
     }
-    catch(e){
+    catch(e){ console.log(e)
         res.status(400).json(e);
     }
     

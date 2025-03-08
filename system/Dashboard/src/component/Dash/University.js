@@ -17,7 +17,7 @@
         async function getAllUniversity(){
             try{
                 const res=await API.get(`/dashboard/getUniversitys`);
-                console.log(res.data);
+                
                 setAllUnis(res.data)
             }
             catch(e){console.log(e)}
@@ -35,7 +35,7 @@
 
         async function AddNewUniversity(){
             try{
-                if(CurNameUni.length>4){
+                if(CurNameUni.length>4){console.log(`seeeeet`)
                     const res =await API.post(`/dashboard/adduniversity`,{username:CurNameUni});
                     if(res.status==200||201){
                         const respones=await API.get(`/dashboard/getUniversitys`);
@@ -47,7 +47,7 @@
                     }
                 }
             }
-            catch(e){}
+            catch(e){console.log(e)}
 
             
         }

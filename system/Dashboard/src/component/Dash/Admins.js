@@ -16,24 +16,31 @@ function Admins() {
 
     let [ShowAdmins,setShowAdmins]=useState(false)
 
-    useEffect(()=>{
-
-        API.get(`/dashboard/getadmins`)
-        .then((date)=>{
-            if(date.status==200){setAdmins(date.data)}
-            else{console.log(`ther problem`)}
-        }).then(()=>{
-            API.get(`/dashboard/getUniversitys`)
-            .then((date)=>{
-            if(date.status==200){
-                setSelectedUni(date.data[0]._id);
-                setAllUnis(date.data);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const adminResponse = await API.get(`/dashboard/getadmins`);
+                if (adminResponse.status === 200) {
+                    setAdmins(adminResponse.data);
+                } else {
+                    console.error(`Error fetching admins: ${adminResponse.status}`);
+                }
+    
+                const uniResponse = await API.get(`/dashboard/getUniversitys`);
+                if (uniResponse.status === 200) {
+                    setSelectedUni(uniResponse.data[0]._id);
+                    setAllUnis(uniResponse.data);
+                } else {
+                    console.error(`Error fetching universities: ${uniResponse.status}`);
+                }
+            } catch (error) {
+                console.error(`Error fetching data: ${error}`);
             }
-            else{console.log(`ther problem`)}
-        })
-
-        })
-    },[])
+        };
+    
+        fetchData();
+    }, []);
+    
 
     async function AddNewAdmin(){
         try{

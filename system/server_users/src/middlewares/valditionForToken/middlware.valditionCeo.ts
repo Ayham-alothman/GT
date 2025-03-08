@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { deocodeToken } from "../../utility/decodeToken";
 
 async function valditionCeo(req: Request, res: Response, next: NextFunction) {
-  try {
-    const token: string = req.cookies.token;;
+  try {  
+    const token: string = req.cookies.token;
     if (!token) {
       throw `not have token must do login `;
     }

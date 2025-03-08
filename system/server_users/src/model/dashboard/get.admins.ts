@@ -8,7 +8,7 @@ async function getAllAdminss(){
        
     }
     catch(e){throw e}
-    finally{}
+   // finally{}
 } 
 
 
